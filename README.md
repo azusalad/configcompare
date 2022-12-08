@@ -13,3 +13,5 @@ Then the output would be
 Edit config.py first with the locations of the config files you want to compare, and words to ignore.  Then run the program.
 
 `python main.py`
+
+View diff.txt for the results
