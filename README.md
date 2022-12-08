@@ -6,7 +6,7 @@ For example if your two input configs are:
 
 Then the output would be
 
-![Example output](outputexample.png)
+
 
 ## Usage
 
