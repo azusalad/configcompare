@@ -1,4 +1,4 @@
-# configcompare
+# Config Compare
 Compares two configs for Valve Source games.
 For example if your two input configs are:
 
