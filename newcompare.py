@@ -72,7 +72,7 @@ f.write('\n')
 
 # differences
 f.write(write_header(f'In both files but different values.'))
-f.write('\n// Quick compare list.  Format: command "{f1_name}" "{f2_name}"\n')
+f.write(f'\n// Quick compare list.  Format: command "{f1_name}" "{f2_name}"\n')
 for command in diff:
     f.write(f'{command} "{f1[command]}" "{f2[command]}"\n')
 f.write('\n')
