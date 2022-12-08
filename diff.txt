@@ -8,13 +8,12 @@ mat_phong "0"
 // exampleautoexec2.cfg only
 // ----------------------------------------------------------------------------
 mat_specular "1"
-cl_interp "0"
 
 // ----------------------------------------------------------------------------
 // In both files but different values.
 // ----------------------------------------------------------------------------
 
-// Quick compare list.  Format: command "{f1_name}" "{f2_name}"
+// Quick compare list.  Format: command "exampleautoexec1.cfg" "exampleautoexec2.cfg"
 sv_cheats "1" "0"
 sv_pure "0" "1"
 
