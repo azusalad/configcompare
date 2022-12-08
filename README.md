@@ -2,6 +2,11 @@
 Compares two configs for Valve Source games.
 For example if your two input configs are:
 
+![Example inputs](inputexample.png)
+
+Then the output would be
+
+![Example outputs](outputexample.png)
 
 ## Usage
 
