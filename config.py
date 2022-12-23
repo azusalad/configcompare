@@ -6,4 +6,4 @@ f2_name = "exampleautoexec2.cfg"
 
 # Will ignore lines that start items in this list
 # Bind and alias have to be in there because they have 2 values
-ignore_list = ['bind', 'alias', 'echo', 'cmd1', 'unbindall', 'password']
+ignore_list = ['bind', 'alias', 'echo', 'cmd1', 'unbindall', 'password', 'name']
