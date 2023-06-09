@@ -15,22 +15,25 @@ def get_commands(lines):
     commands = [x.split() for x in lines]
     command_dict = {}
     for x in commands:
-        command = x[0]
-        value = x[1]
-        if len(x) != 2:
-            # sometimes the value will have spaces in them
-            if ('"' in x[1] and '"' in x[-1]) or ("'" in x[1] and "'" in x[-1]):
-                value_with_spaces = list(' '.join(x[1:]))
-                value_with_spaces.pop(0)
-                value_with_spaces.pop(-1)
-                command_dict[command] = ''.join(y for y in value_with_spaces)
-            else:
-                print('Warning this command does not have 2 parts, skipping: ' + ' '.join(str(y) for y in x))
-        else: # check if value has quotes around or not
-            if (value[0] == "'" and value[-1] == "'") or (value[0] == '"' and value[-1] == '"'):
-                command_dict[command] = value[1:-1]
-            else:
-                command_dict[command] = value
+        if len(x) > 1:
+            command = x[0]
+            value = x[1]
+            if len(x) != 2:
+                # sometimes the value will have spaces in them
+                if ('"' in x[1] and '"' in x[-1]) or ("'" in x[1] and "'" in x[-1]):
+                    value_with_spaces = list(' '.join(x[1:]))
+                    value_with_spaces.pop(0)
+                    value_with_spaces.pop(-1)
+                    command_dict[command] = ''.join(y for y in value_with_spaces)
+                else:
+                    print('Warning this command does not have 2 parts, skipping: ' + ' '.join(str(y) for y in x))
+            else: # check if value has quotes around or not
+                if (value[0] == "'" and value[-1] == "'") or (value[0] == '"' and value[-1] == '"'):
+                    command_dict[command] = value[1:-1]
+                else:
+                    command_dict[command] = value
+        else:
+            print(str(x) + " does not have two parts, skipping")
     return command_dict
 
 def write_header(text):
