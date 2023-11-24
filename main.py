@@ -44,9 +44,33 @@ def write_header(text):
     a.append('// ----------------------------------------------------------------------------\n')
     return ''.join(x for x in a)
 
+def get_comments(f_name):
+    """Makes a dictionary of command:comment"""
+    f = open(f_name,'r')
+    lines = [x.split('//') for x in f.readlines()]
+    f.close()
+    rem_dict = {}
+    for line in lines:
+        # checks if comment exists and if the entire line is not just a single comment
+        if len(line) > 1 and len(line[0].split()):
+            rem_dict[line[0].split()[0]] = "// " + line[1].strip()
+    return rem_dict
+
+def pretty_format(command_dict, rem_dict, command, write_comments):
+    if write_comments:
+        try:
+            pretty = command + ' "' + str(command_dict[command]) + '"' + str(" " + rem_dict[command])+ '\n'
+        except:
+            pretty = command + ' "' + str(command_dict[command]) + '"\n'
+    else:
+        pretty = command + ' "' + str(command_dict[command]) + '"\n'
+    return pretty
+
 # get commands
 f1 = get_commands(get_lines(f1_name))
 f2 = get_commands(get_lines(f2_name))
+f1_rem = get_comments(f1_name)
+f2_rem = get_comments(f2_name)
 
 # find differences
 diff = []
@@ -64,13 +88,13 @@ f = open('diff.txt', 'w')
 # write f1 only
 f.write(write_header(f1_name + ' only'))
 for command in f1_only:
-    f.write(command + ' "' + str(f1[command]) + '"\n')
+    f.write(pretty_format(f1, f1_rem, command, write_comments))
 f.write('\n')
 
 # write f2 only
 f.write(write_header(f2_name + ' only'))
 for command in f2_only:
-    f.write(command + ' "' + str(f2[command]) + '"\n')
+    f.write(pretty_format(f2, f2_rem, command, write_comments))
 f.write('\n')
 
 # differences
@@ -82,11 +106,11 @@ f.write('\n')
 
 f.write(f'\n// Taking values from {f1_name}\n')
 for command in diff:
-    f.write(f'{command} "{f1[command]}"\n')
+    f.write(pretty_format(f1, f1_rem, command, write_comments))
 f.write('\n')
 
 f.write(f'\n// Taking values from {f2_name}\n')
 for command in diff:
-    f.write(f'{command} "{f2[command]}"\n')
+    f.write(pretty_format(f2, f2_rem, command, write_comments))
 
 f.close()
